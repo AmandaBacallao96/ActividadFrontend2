@@ -1,0 +1,36 @@
+<section>
+  <mat-card>
+    <mat-card-content>
+      <mat-toolbar color="primary">
+        <!-- <a mat-button routerLink="usuarios" routerLinkActive="activebutton" class="button">
+          <mat-icon>home</mat-icon>
+          <span>Inicio</span>
+        </a> -->
+
+        <a mat-button routerLink="contrato" routerLinkActive="activebutton" class="button">
+          <mat-icon>gavel</mat-icon>
+          <span>Contratos</span>
+        </a>
+
+        <a mat-button routerLink="factura" routerLinkActive="activebutton" class="button">
+          <mat-icon>fact_check</mat-icon>
+          <span>Facturas</span></a>
+
+        <a mat-button routerLink="clientes" routerLinkActive="activebutton" class="button">
+          <mat-icon>people</mat-icon>
+          <span>Clientes</span></a>
+
+        <a mat-button routerLink="servicios" routerLinkActive="activebutton" class="button">
+          <mat-icon>description</mat-icon>
+          <span>Servicios</span></a>
+
+        <a mat-button routerLink="ventas" routerLinkActive="activebutton" class="button">
+          <mat-icon>query_stats</mat-icon>
+          <span>Ventas</span></a>
+
+      </mat-toolbar>
+
+      <router-outlet />
+    </mat-card-content>
+  </mat-card>
+</section>
