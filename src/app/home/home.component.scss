@@ -1,0 +1,87 @@
+.home {
+    text-align: center;
+    margin-top: 50px;
+}
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Estilo general del componente */
+:host {
+    display: block;
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Encabezados de los componentes */
+h1, h2, h3 {
+    color: #1a73e8;
+    font-weight: 600;
+}
+
+/* Botones */
+button, mat-button {
+    background-color: #1a73e8;
+    color: #fff;
+    border-radius: 4px;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+    margin: 5px 0;
+}
+
+button:hover, mat-button:hover {
+    background-color: #1557a4;
+}
+
+/* Tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+}
+
+tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Formularios */
+mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+input, select, textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 8px;
+}
+
+/* Ajustes para contenedores */
+.container {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

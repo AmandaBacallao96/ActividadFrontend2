@@ -6,41 +6,46 @@ import { ContratoComponent } from './contrato/contrato.component';
 import { FacturaComponent } from './factura/factura.component';
 import { EmpresaComponent } from './empresa/empresa.component';
 import { VentasComponent } from './ventas/ventas.component';
-
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './auth.guard';
 
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'contrato',
+        redirectTo: 'login',
         pathMatch: 'full'
-        
+    },
+    {
+        path: 'login',
+        component: LoginComponent
     },
     {
         path: 'usuarios',
-        component:UsuarioComponent
+        component: UsuarioComponent,
+
     },
     {
         path: 'contrato',
-        component:ContratoComponent
+        component: ContratoComponent,
     },
     {
         path: 'factura',
-        component:FacturaComponent
+        component: FacturaComponent,
     },
     {
         path: 'servicios',
-        component:ServicioComponent
+        component: ServicioComponent,
     },
     {
         path: 'clientes',
-        component:EmpresaComponent
+        component: EmpresaComponent,
     },
     {
         path: 'ventas',
-        component:VentasComponent
+        component: VentasComponent,
     },
     {
         path: '**',
-        component:NotFoundComponent
+        component: NotFoundComponent
     }
 ];

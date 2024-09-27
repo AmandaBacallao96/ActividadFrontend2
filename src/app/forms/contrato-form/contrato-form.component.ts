@@ -12,14 +12,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { v4 as uuid4 } from 'uuid';
 import { ContratoControlHorario } from '../../models/contratocontrolhorario.model';
 
-const MATIRIAL_MODULES = [MatLabel,MatFormField, MatInput, MatDialogModule, MatButtonModule,MatSelectModule];
+const MATIRIAL_MODULES = [MatLabel, MatFormField, MatInput, MatDialogModule, MatButtonModule, MatSelectModule];
 
 @Component({
   selector: 'app-contrato-form',
   standalone: true,
-  imports: [MATIRIAL_MODULES,ReactiveFormsModule],
+  imports: [MATIRIAL_MODULES, ReactiveFormsModule],
   templateUrl: './contrato-form.component.html',
-  styleUrl: './contrato-form.component.scss'
+  styleUrls: ['./contrato-form.component.scss']
 })
 export class ContratoFormComponent implements OnInit {
   contratoForm!: FormGroup;
@@ -28,79 +28,53 @@ export class ContratoFormComponent implements OnInit {
   private readonly _matDialog = inject(MAT_DIALOG_DATA);
   private _snackBar = inject(MatSnackBar);
   private readonly _service = inject(GestionService);
-  private readonly _modalSevcice = inject(ModalService);
+  private readonly _modalService = inject(ModalService);
   private crearContratoHorario = false;
 
-ngOnInit(): void {
-  this._buildForm();
-  //this.contratoForm.patchValue(this._matDialog.data);
-
-  if (this._matDialog.data) {
-    // Preselecciona las opciones del mat-select
-    this.contratoForm.patchValue({
-      precio: this._matDialog.data.precio,
-      estado: this._matDialog.data.estado.toString(),
-      dni: this._matDialog.data.dni
-    });
+  ngOnInit(): void {
+    this._buildForm();
+    if (this._matDialog.data) {
+      // Preselecciona las opciones del mat-select
+      this.contratoForm.patchValue({
+        precio: this._matDialog.data.precio,
+        estado: this._matDialog.data.estado.toString(),
+        dni: this._matDialog.data.dni
+      });
+    }
   }
 
-}
-
-
-async onSubmit() {
-  const contrato = this.contratoForm.value; 
-  if (this._matDialog.isEditing) {
-    await this._service.update('contrato', this._matDialog.data.id_contrato,contrato).subscribe(
-      (response) => {
-        console.log(response);
-        this.openSnackBar(response.message.toString(), "Aceptar");
-      },
-      (error) => {
-        console.log(error);
-        this.openSnackBar(error.message.toString(), "Aceptar");
-      }
-    );
-  } else {
-    const nuevoId = uuid4();
-    contrato.id_contrato = nuevoId;
-    await this._service.create('contrato', contrato).subscribe(
-      (response) => {
-        if(response.statusCode === 200){
-          console.log("Entra a contrato_control_horario" );
-          this.crearContratoHorario = true;
-        }else{
-          console.log("No Entra a contrato_control_horario" );
-        }
-        console.log(response);
-        this.openSnackBar(response.message.toString(), "Aceptar");
-      },
-      (error) => {
-        console.log(error);
-        this.openSnackBar(error.message.toString(), "Aceptar");
-      }
-    );
-
-    if(this.crearContratoHorario){
-      let contrato_control_horario = new ContratoControlHorario(uuid4(),this._matDialog.data.id_contrato.toString());
-      await this._service.create('contrato_horario',contrato_control_horario).subscribe(
+  async onSubmit() {
+    const contrato = this.contratoForm.value; 
+    if (this._matDialog.isEditing) {
+      // Actualizar contrato existente
+      this._service.update('contrato', this._matDialog.data.id_contrato, contrato).subscribe(
         (response) => {
-          if(response.status == 200){
-            console.log(response);
-            this.openSnackBar(response.message.toString(), "Aceptar");
-          }
-        } 
+          console.log(response);
+          this.openSnackBar(response.message.toString(), "Aceptar");
+        },
+        (error) => {
+          console.error('Error al actualizar el contrato:', error);
+          this.openSnackBar('Error al actualizar el contrato', 'Cerrar');
+        }
+      );
+    } else {
+      // Crear nuevo contrato
+      this._service.create('contrato', contrato).subscribe(
+        (response) => {
+          console.log(response);
+          this.openSnackBar('Contrato creado exitosamente', 'Aceptar');
+        },
+        (error) => {
+          console.error('Error al crear el contrato:', error);
+          this.openSnackBar('Error al crear el contrato', 'Cerrar');
+        }
       );
     }
   }
 
-  this._modalSevcice.closeModal();
-  this.crearContratoHorario = false;
-}
-
-
-getTitle(): string {
-  return this._matDialog.data ? 'Actualizar' : 'Agregar';
-}
+  getTitle(): string {
+    return this._matDialog.data ? 'Actualizar' : 'Agregar';
+  }
 
   private _buildForm(): void {
     this.contratoForm = this._fb.nonNullable.group({
@@ -113,5 +87,4 @@ getTitle(): string {
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action);
   }
-
 }
