@@ -1,30 +1,60 @@
-.login-form {
+/* Contenedor general de login */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  
+  /* Estilos para el formulario de login */
+  .login-form {
     max-width: 400px;
-    margin: 100px auto;
+    width: 100%; /* Ajuste para que se alinee mejor con el vídeo */
+    margin: 20px auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
     background-color: #f9f9f9;
-}
-.form-group {
+  }
+  
+  /* Contenedor del reproductor de vídeo */
+  .video-container {
+    width: 80%; /* Ajustar el tamaño del vídeo según necesidad */
+    margin-top: 20px; /* Espacio entre el formulario y el vídeo */
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Otros estilos del formulario */
+  .form-group {
     margin-bottom: 15px;
-}
-input {
+  }
+  
+  /* Estilo de los inputs */
+  input {
     width: 100%;
     padding: 10px;
     margin: 5px 0;
     box-sizing: border-box;
-}
-button {
+  }
+  
+  /* Estilo de los botones */
+  button {
     background-color: #007bff;
     color: white;
     padding: 10px 20px;
     border: none;
     cursor: pointer;
-}
-
-/* Estilo general del componente */
-:host {
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Ajuste general del componente */
+  :host {
     display: block;
     margin: 20px;
     padding: 20px;
@@ -32,68 +62,69 @@ button {
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Encabezados de los componentes */
-h1, h2, h3 {
+  }
+  
+  /* Encabezados */
+  h1, h2, h3 {
     color: #1a73e8;
     font-weight: 600;
-}
-
-/* Botones */
-button, mat-button {
+  }
+  
+  /* Botones y su estado hover */
+  button, mat-button {
     background-color: #1a73e8;
     color: #fff;
     border-radius: 4px;
     padding: 10px 15px;
     transition: background-color 0.3s ease;
     margin: 5px 0;
-}
-
-button:hover, mat-button:hover {
+  }
+  
+  button:hover, mat-button:hover {
     background-color: #1557a4;
-}
-
-/* Tablas */
-table {
+  }
+  
+  /* Tablas */
+  table {
     width: 100%;
     border-collapse: collapse;
-}
-
-th, td {
+  }
+  
+  th, td {
     padding: 12px 15px;
     border-bottom: 1px solid #ddd;
-}
-
-th {
+  }
+  
+  th {
     background-color: #f1f1f1;
     font-weight: bold;
-}
-
-tr:hover {
+  }
+  
+  tr:hover {
     background-color: #f9f9f9;
-}
-
-/* Formularios */
-mat-form-field {
+  }
+  
+  /* Formularios */
+  mat-form-field {
     width: 100%;
     margin-bottom: 20px;
-}
-
-input, select, textarea {
+  }
+  
+  input, select, textarea {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     width: 100%;
     box-sizing: border-box;
     margin-top: 8px;
-}
-
-/* Ajustes para contenedores */
-.container {
+  }
+  
+  /* Ajustes para contenedores */
+  .container {
     margin: 20px auto;
     padding: 20px;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+  }
+  
